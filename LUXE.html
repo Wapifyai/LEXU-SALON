@@ -1,0 +1,1470 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUXE | Luxury Hair Experience</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg-dark: #000000;
+      --text-light: #f4f0ea;
+      --accent: #c4a484;
+      --font-serif: "Playfair Display", serif;
+      --font-sans: "Montserrat", sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      font-family: var(--font-sans);
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    /* --- SCROLL ANIMATIONS --- */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Staggered delays for grid items */
+    #our-work .grid > div:nth-child(1) { transition-delay: 0.1s; }
+    #our-work .grid > div:nth-child(2) { transition-delay: 0.2s; }
+    #our-work .grid > div:nth-child(3) { transition-delay: 0.3s; }
+    #our-work .grid > div:nth-child(4) { transition-delay: 0.4s; }
+    #our-work .grid > div:nth-child(5) { transition-delay: 0.5s; }
+    #our-work .grid > div:nth-child(6) { transition-delay: 0.6s; }
+    #our-work .grid > div:nth-child(7) { transition-delay: 0.7s; }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      height: 100vh;
+      background:
+        linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)),
+        url("Main.png");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 6%;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-content {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0 6% 80px;
+    }
+
+    .hero-title h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      line-height: 1.1;
+    }
+
+    /* --- MARQUEE --- */
+    .marquee {
+      background: var(--text-light);
+      color: black;
+      padding: 20px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-content {
+      display: flex;
+      animation: scroll 25s linear infinite;
+    }
+
+    .marquee-content span {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin: 0 50px;
+    }
+
+    @keyframes scroll {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* --- NEW ABOUT/ECHOES SECTION (RE-STRUCTURED) --- */
+    .about-lumiere {
+      background-color: var(--bg-dark);
+      padding: 100px 6%;
+      position: relative;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    /* Overlapping Image Card - Style like image_280a5b.png */
+    .salon-feature-card {
+      background: #1a1a1a;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0;
+      margin-top: -150px;
+      /* Overlap effect */
+      z-index: 10;
+    }
+
+    .salon-feature-card img {
+      width: 100%;
+      display: block;
+    }
+
+    .card-caption {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .card-caption p {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* Text Content - Style like "Echoes of Imagination" */
+    .about-text-content {
+      text-align: right;
+      padding-top: 50px;
+    }
+
+    .about-text-content h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 6vw, 6rem);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .about-text-content p {
+      font-size: 14px;
+      color: #b3b3b3;
+      max-width: 400px;
+      margin-left: auto;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .cta-dive {
+      text-decoration: none;
+      color: #fff;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Highlighted Statement - Style like bottom of image_280a5b.png */
+    .brand-statement {
+      margin-top: 100px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 60px;
+    }
+
+    .brand-statement h3 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      line-height: 1.5;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .brand-statement span {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0 5px;
+    }
+
+    .play-video-btn {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-top: 40px;
+      cursor: pointer;
+    }
+
+    .play-icon {
+      width: 50px;
+      height: 50px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .salon-feature-card {
+        margin-top: -50px;
+        width: 80%;
+        margin-inline: auto;
+      }
+
+      .about-text-content {
+        text-align: center;
+      }
+
+      .about-text-content p {
+        margin-inline: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="hero">
+    <header>
+      <div class="logo">
+        <h1>LUXE</h1>
+        <span class="text-[10px] tracking-[6px] text-[#c4a484] uppercase">Salon</span>
+      </div>
+      <nav class="hidden md:block">
+        <ul class="flex gap-8 text-[11px] tracking-widest uppercase">
+          <li><a href="#">Home</a></li>
+          <li><a href="#services">Service</a></li>
+          <li><a href="#our-work">Work</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="md:hidden" id="mobile-menu-btn" style="font-size: 24px; cursor: pointer">☰</div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+      class="fixed inset-0 bg-black/95 z-[200] hidden flex-col items-center justify-center transition-opacity duration-300">
+      <div class="absolute top-6 right-6 text-3xl cursor-pointer text-white" id="close-menu-btn">✕</div>
+      <ul class="flex flex-col gap-8 text-[14px] tracking-widest uppercase text-center text-white">
+        <li><a href="#" class="mobile-link">Home</a></li>
+        <li><a href="#about" class="mobile-link">About</a></li>
+        <li><a href="#services" class="mobile-link">Service</a></li>
+        <li><a href="#our-work" class="mobile-link">Work</a></li>
+        <li><a href="#team" class="mobile-link">Team</a></li>
+        <li><a href="#pricing" class="mobile-link">Pricing</a></li>
+        <li><a href="#contact" class="mobile-link">Contact</a></li>
+        <li><a href="appointment.html" class="mt-4 inline-block border border-white/40 px-8 py-4 rounded-full text-[12px] tracking-widest hover:bg-white hover:text-black transition">● Book Appointment</a></li>
+      </ul>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-title">
+        <h2 class="font-serif">
+          MODERN LUXURY<br />HAIR.<br /><i>NATURALLY YOU.</i>
+        </h2>
+        <a href="appointment.html"
+          class="mt-8 inline-block border border-white/40 px-8 py-4 rounded-full text-[12px] tracking-widest hover:bg-white hover:text-black transition">●
+          BOOK YOUR EXPERIENCE</a>
+      </div>
+      <div class="text-right pb-4 hidden md:block">
+        <p class="text-[10px] tracking-widest text-[#c4a484] mb-2">
+          HAIR BY LUXE
+        </p>
+        <h3 class="font-serif text-4xl">Where Beauty<br />Meets Artistry</h3>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about-lumiere">
+    <div class="about-grid">
+      <div class="salon-feature-card">
+        <img src="Image1.jpeg" alt="Luxe Salon Exterior" />
+        <div class="card-caption">
+          <p>Best Styling in London</p>
+        </div>
+      </div>
+
+      <div class="about-text-content">
+        <h2>Artistry in<br />Imagination</h2>
+        <p>
+          Luxe Salon reflects a journey from pure creativity to hair
+          artistry, revealing the personal transformations that shape our
+          clients' confidence and style.
+        </p>
+        <a href="#" class="cta-dive">■ LET'S DIVE INTO THE LUXURY</a>
+      </div>
+    </div>
+
+    <div class="brand-statement">
+      <h3>
+        LUXE IS A CELEBRATED LUXURY DESTINATION WHOSE
+        <span>COMPELLING STYLING</span> AND <span>RICH CARE</span> HAVE
+        TOUCHED CLIENTS AROUND THE CITY.
+      </h3>
+
+      <div class="play-video-btn">
+        <div class="play-icon">▶</div>
+        <div class="text-[11px] tracking-widest">
+          <strong>KNOW MORE ABOUT US</strong><br />
+          <span class="opacity-50">WATCH OUR STORY</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="marquee">
+    <div class="marquee-content" id="m-content">
+      <span>Award Winning Salon</span>
+      <span>Premium Styling</span>
+      <span>Luxury Experience</span>
+      <span>Best Selling</span>
+    </div>
+  </div>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <section id="services" class="bg-white py-32 px-[6%] text-black overflow-hidden relative z-0">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20">
+        <h2 class="font-sans text-[11px] tracking-[5px] uppercase mb-4 text-gray-500 font-semibold">
+          Our Expertise
+        </h2>
+        <h3 class="font-serif text-5xl md:text-6xl uppercase tracking-tighter">
+          Our Services
+        </h3>
+        <div class="w-20 h-[1px] bg-black mx-auto mt-8 opacity-20"></div>
+      </div>
+
+      <div class="swiper serviceSwiper pb-24">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide group">
+            <div class="relative overflow-hidden aspect-[3/4] mb-6 bg-gray-100 border border-gray-100">
+              <div
+                class="absolute inset-0 flex items-center justify-center text-gray-400 text-[10px] uppercase tracking-[3px]">
+                Hair Cutting
+              </div>
+              <img src="1.jfif"
+                class="service-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            </div>
+            <h4 class="font-serif text-2xl uppercase mb-3 tracking-widest">
+              Hair Cutting
+            </h4>
+            <p class="text-[12px] text-gray-500 mb-6 font-light leading-relaxed">
+              Precision cuts tailored to your unique facial structure.
+            </p>
+            <a href="#"
+              class="text-[10px] font-bold tracking-[2px] uppercase border-b border-black pb-1 hover:opacity-50 transition">Learn
+              More</a>
+          </div>
+
+          <div class="swiper-slide group">
+            <div class="relative overflow-hidden aspect-[3/4] mb-6 bg-gray-100 border border-gray-100">
+              <div
+                class="absolute inset-0 flex items-center justify-center text-gray-400 text-[10px] uppercase tracking-[3px]">
+                Makeup
+              </div>
+              <img src="makeup 2.jfif"
+                class="service-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            </div>
+            <h4 class="font-serif text-2xl uppercase mb-3 tracking-widest">
+              Makeup
+            </h4>
+            <p class="text-[12px] text-gray-500 mb-6 font-light leading-relaxed">
+              Professional artistry for weddings and special events.
+            </p>
+            <a href="#"
+              class="text-[10px] font-bold tracking-[2px] uppercase border-b border-black pb-1 hover:opacity-50 transition">Learn
+              More</a>
+          </div>
+
+          <div class="swiper-slide group">
+            <div class="relative overflow-hidden aspect-[3/4] mb-6 bg-gray-100 border border-gray-100">
+              <div
+                class="absolute inset-0 flex items-center justify-center text-gray-400 text-[10px] uppercase tracking-[3px]">
+                Spa
+              </div>
+              <img src="spa 3.jfif"
+                class="service-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            </div>
+            <h4 class="font-serif text-2xl uppercase mb-3 tracking-widest">
+              Spa
+            </h4>
+            <p class="text-[12px] text-gray-500 mb-6 font-light leading-relaxed">
+              Relaxing therapies to rejuvenate your mind and body.
+            </p>
+            <a href="#"
+              class="text-[10px] font-bold tracking-[2px] uppercase border-b border-black pb-1 hover:opacity-50 transition">Learn
+              More</a>
+          </div>
+
+          <div class="swiper-slide group">
+            <div class="relative overflow-hidden aspect-[3/4] mb-6 bg-gray-100 border border-gray-100">
+              <div
+                class="absolute inset-0 flex items-center justify-center text-gray-400 text-[10px] uppercase tracking-[3px]">
+                Coloring
+              </div>
+              <img src="coloring 4.jfif"
+                class="service-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            </div>
+            <h4 class="font-serif text-2xl uppercase mb-3 tracking-widest">
+              Coloring
+            </h4>
+            <p class="text-[12px] text-gray-500 mb-6 font-light leading-relaxed">
+              Expert color techniques including balayage and highlights.
+            </p>
+            <a href="#"
+              class="text-[10px] font-bold tracking-[2px] uppercase border-b border-black pb-1 hover:opacity-50 transition">Learn
+              More</a>
+          </div>
+
+          <div class="swiper-slide group">
+            <div class="relative overflow-hidden aspect-[3/4] mb-6 bg-gray-100 border border-gray-100">
+              <div
+                class="absolute inset-0 flex items-center justify-center text-gray-400 text-[10px] uppercase tracking-[3px]">
+                Facial
+              </div>
+              <img src="facial.jfif"
+                class="service-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            </div>
+            <h4 class="font-serif text-2xl uppercase mb-3 tracking-widest">
+              Facial
+            </h4>
+            <p class="text-[12px] text-gray-500 mb-6 font-light leading-relaxed">
+              Advanced skincare treatments for a radiant glow.
+            </p>
+            <a href="#"
+              class="text-[10px] font-bold tracking-[2px] uppercase border-b border-black pb-1 hover:opacity-50 transition">Learn
+              More</a>
+          </div>
+
+          <div class="swiper-slide group">
+            <div class="relative overflow-hidden aspect-[3/4] mb-6 bg-gray-100 border border-gray-100">
+              <div
+                class="absolute inset-0 flex items-center justify-center text-gray-400 text-[10px] uppercase tracking-[3px]">
+                Bridal
+              </div>
+              <img src="bridal 6.jfif"
+                class="service-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            </div>
+            <h4 class="font-serif text-2xl uppercase mb-3 tracking-widest">
+              Bridal
+            </h4>
+            <p class="text-[12px] text-gray-500 mb-6 font-light leading-relaxed">
+              Complete grooming packages for your special day.
+            </p>
+            <a href="#"
+              class="text-[10px] font-bold tracking-[2px] uppercase border-b border-black pb-1 hover:opacity-50 transition">Learn
+              More</a>
+          </div>
+        </div>
+        <div class="swiper-pagination !bottom-0"></div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    new Swiper(".serviceSwiper", {
+      slidesPerView: 1,
+      spaceBetween: 40,
+      loop: true,
+      centeredSlides: false,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        640: { slidesPerView: 2 },
+        1024: { slidesPerView: 4 },
+      },
+    });
+  </script>
+  <section id="our-work" class="bg-white py-24 px-[6%] text-black">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20">
+        <h2 class="font-sans text-[11px] tracking-[5px] uppercase mb-4 text-gray-500 font-semibold">
+          Portfolio
+        </h2>
+        <h3 class="font-serif text-5xl md:text-6xl uppercase tracking-tighter">
+          Our Work
+        </h3>
+      </div>
+      <div class="pb-2">
+        <a href="#"
+          class="text-[11px] font-bold tracking-[2px] uppercase border-b border-black pb-1 hover:opacity-50 transition">Explore
+          Gallery</a>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[250px] md:auto-rows-[300px]">
+      <div class="md:col-span-2 md:row-span-2 group relative overflow-hidden bg-gray-100 border border-gray-50">
+        <div
+          class="absolute inset-0 flex items-center justify-center text-gray-400 text-[10px] uppercase tracking-widest">
+
+        </div>
+        <img src="work1.png"
+          class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+        <div
+          class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity p-8 flex items-end">
+          <h4 class="text-white font-serif text-2xl">Bridal Couture</h4>
+        </div>
+      </div>
+
+      <div class="group relative overflow-hidden bg-gray-100 border border-gray-50">
+        <div class="absolute inset-0 flex items-center justify-center text-gray-400 text-[10px]">
+
+        </div>
+        <img src="work2.jfif"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+      </div>
+
+      <div class="group relative overflow-hidden bg-gray-100 border border-gray-50">
+        <div class="absolute inset-0 flex items-center justify-center text-gray-400 text-[10px]">
+
+        </div>
+        <img src="work3.jfif"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+      </div>
+
+      <div class="md:col-span-2 group relative overflow-hidden bg-gray-100 border border-gray-50">
+        <div class="absolute inset-0 flex items-center justify-center text-gray-400 text-[10px]">
+
+        </div>
+        <img src="work4.jfif"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+      </div>
+
+      <div class="group relative overflow-hidden bg-gray-100 border border-gray-50">
+        <div class="absolute inset-0 flex items-center justify-center text-gray-400 text-[10px]">
+
+        </div>
+        <img src="work5.jfif"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+      </div>
+
+      <div class="group relative overflow-hidden bg-gray-100 border border-gray-50">
+        <div class="absolute inset-0 flex items-center justify-center text-gray-400 text-[10px]">
+        </div>
+        <img src="work6.jfif"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+      </div>
+      <div class="md:col-span-2 group relative overflow-hidden bg-gray-100 border border-gray-50">
+        <div class="absolute inset-0 flex items-center justify-center text-gray-400 text-[10px]">
+        </div>
+        <img src="work7.jfif"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+      </div>
+  </section>
+
+
+
+
+  <!-- ECHOES OF OPULENCE SECTION -->
+  <section id="team"
+    class="min-h-screen relative flex flex-col justify-between py-10 px-[6%] text-[#33261d] overflow-hidden"
+    style="background: linear-gradient(110deg, #d8cabc 0%, #fcfbf9 60%);">
+
+    <!-- Main Center: GRID OVERLAP (Perfect Centering) -->
+    <div class="flex-1 flex flex-col items-center justify-center w-full my-8">
+
+      <!-- Grid Container: Text and Image will stack perfectly here -->
+      <div class="grid place-items-center w-full">
+
+        <!-- Text (Behind Image) - OPACITY 60% & LARGER SIZE ADDED HERE -->
+        <div
+          class="col-start-1 row-start-1 z-0 flex flex-col items-center text-center opacity-60 w-full overflow-hidden px-2">
+          <!-- Echoes Size Increased -->
+          <h2 class="text-[clamp(3rem,12vw,9.5rem)] leading-none tracking-[6px] uppercase font-normal"
+            style="font-family: var(--font-serif);">
+            MASTERS
+          </h2>
+          <!-- "of" Size Increased -->
+          <span class="italic text-[clamp(1.5rem,4vw,3.5rem)] text-[#4a3b32] -my-2 md:-my-10 block relative z-20"
+            style="font-family: var(--font-serif);">
+            of
+          </span>
+          <!-- Opulence Size Increased -->
+          <h1 class="text-[clamp(3.5rem,14vw,14rem)] leading-none tracking-[2px] uppercase font-normal"
+            style="font-family: var(--font-serif);">
+            ARTISTRY
+          </h1>
+        </div>
+
+        <!-- Overlapping Center Image -->
+        <div
+          class="col-start-1 row-start-1 z-10 pointer-events-none flex flex-col items-center justify-center w-full mt-8 md:mt-0 px-4">
+          <span
+            class="italic text-[clamp(2.2rem,8vw,4rem)] text-[#4a3b32] mb-6 md:mb-8 block relative z-30 font-bold text-center leading-tight"
+            style="font-family: var(--font-serif);">
+            OUR Team
+          </span>
+          <!-- IMPORTANT: Yaha apni image ka path lagaye -->
+          <img src="team.png" alt="Stylist Model"
+            class="max-h-[350px] sm:max-h-[450px] md:max-h-[700px] w-full max-w-[100%] md:w-auto object-contain pointer-events-auto drop-shadow-2xl" />
+        </div>
+
+      </div>
+
+      <!-- Tagline -->
+      <div class="relative z-20 flex items-center justify-center gap-3 md:gap-6 mt-8 md:mt-12">
+        <div class="h-[1px] w-8 md:w-20 bg-[#33261d] opacity-20"></div>
+        <p class="text-[8px] md:text-[10px] tracking-[3px] uppercase font-semibold text-[#554840] whitespace-nowrap">
+          Beauty that speaks. Confidence that stays.
+        </p>
+        <div class="h-[1px] w-8 md:w-20 bg-[#33261d] opacity-20"></div>
+      </div>
+  </section>
+  <!-- Adding Cursive Font just for this section -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;500;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    .font-signature {
+      font-family: 'Alex Brush', cursive;
+    }
+
+    .font-heading {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .font-sans-premium {
+      font-family: 'Montserrat', sans-serif;
+    }
+  </style>
+
+  <section id="pricing" class="relative bg-white text-[#333333] py-24 overflow-hidden font-sans-premium">
+
+    <div class="absolute top-0 left-0 w-full md:w-1/2 h-[600px] bg-[#f8f5f0] z-0"></div>
+    <div class="absolute bottom-0 right-0 w-full md:w-1/2 h-[800px] bg-[#e6ddcf] z-0"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-[6%]">
+
+      <div class="text-center max-w-2xl mx-auto mb-20 md:mb-32 relative">
+
+        <div
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none mt-16 md:mt-24">
+          <h2
+            class="font-heading text-[clamp(2.5rem,8vw,7rem)] text-[#d4c8b8] opacity-30 uppercase tracking-[15px] whitespace-nowrap">
+            The Artistry
+          </h2>
+        </div>
+
+        <h3 class="font-signature text-6xl md:text-7xl mb-6 text-[#1a1a1a]">LUXE Boutique Salon</h3>
+        <p
+          class="text-[11px] md:text-[13px] leading-loose text-gray-500 relative z-10 max-w-lg mx-auto font-medium tracking-wide uppercase">
+          Premier destination for bespoke hair transformations. We blend classic techniques with modern luxury to craft
+          your signature style.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center mb-24 md:mb-32">
+
+        <div class="pl-0 md:pl-10 order-2 md:order-1">
+          <h3 class="font-signature text-6xl mb-8 md:mb-10 text-[#1a1a1a]">Couture Styling</h3>
+
+          <div class="mb-10">
+            <h4 class="font-bold text-[12px] tracking-[2px] mb-5 text-[#111] uppercase">Signature Cut & Finish</h4>
+            <ul class="space-y-3 text-[13px] text-gray-600">
+              <li class="flex items-end">
+                <span class="w-32 pb-1">Salon Stylist</span>
+                <div class="flex-1 mx-3 border-b border-dotted border-gray-400 relative top-[-6px]"></div>
+                <span class="pb-1 font-bold text-[#111]">$ 65.00</span>
+              </li>
+              <li class="flex items-end">
+                <span class="w-32 pb-1">Senior Art Director</span>
+                <div class="flex-1 mx-3 border-b border-dotted border-gray-400 relative top-[-6px]"></div>
+                <span class="pb-1 font-bold text-[#111]">$ 85.00</span>
+              </li>
+              <li class="flex items-end">
+                <span class="w-32 pb-1">Creative Director</span>
+                <div class="flex-1 mx-3 border-b border-dotted border-gray-400 relative top-[-6px]"></div>
+                <span class="pb-1 font-bold text-[#111]">$ 110.00</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mb-12">
+            <h4 class="font-bold text-[12px] tracking-[2px] mb-5 text-[#111] uppercase">Essential Maintenance</h4>
+            <ul class="space-y-3 text-[13px] text-gray-600">
+              <li class="flex items-end">
+                <span class="w-32 pb-1">Dry Contour Cut</span>
+                <div class="flex-1 mx-3 border-b border-dotted border-gray-400 relative top-[-6px]"></div>
+                <span class="pb-1 font-bold text-[#111]">$ 50.00</span>
+              </li>
+              <li class="flex items-end">
+                <span class="w-32 pb-1">Bespoke Blow-Dry</span>
+                <div class="flex-1 mx-3 border-b border-dotted border-gray-400 relative top-[-6px]"></div>
+                <span class="pb-1 font-bold text-[#111]">$ 45.00</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="#"
+            class="inline-block bg-[#1a1a1a] text-white text-[11px] tracking-[4px] font-bold uppercase px-12 py-5 hover:bg-[#c4a484] transition-all duration-500 shadow-lg">Reserve
+            Appointment</a>
+        </div>
+
+        <div class="w-full order-1 md:order-2 shadow-2xl overflow-hidden group">
+          <img src="price1.jfif" alt="Hair Styling Service"
+            class="w-full h-[450px] md:h-[600px] object-cover transition-transform duration-700 group-hover:scale-105" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+
+        <div class="w-full order-1 shadow-2xl overflow-hidden group">
+          <img src="price2.jfif" alt="Hair Colouring Service"
+            class="w-full h-[450px] md:h-[600px] object-cover transition-transform duration-700 group-hover:scale-105" />
+        </div>
+
+        <div class="pr-0 md:pr-10 relative order-2">
+
+          <div class="hidden md:block absolute right-0 top-[10%] h-[80%] w-[1px] bg-gray-300"></div>
+
+          <h3 class="font-signature text-6xl mb-8 md:mb-10 text-[#1a1a1a]">Colour Alchemy</h3>
+
+          <div class="mb-10">
+            <h4 class="font-bold text-[12px] tracking-[2px] mb-5 text-[#111] uppercase">Dimensional Colour</h4>
+            <ul class="space-y-3 text-[13px] text-gray-600">
+              <li class="flex items-end">
+                <span class="w-40 pb-1">Full Ritual Colour</span>
+                <div class="flex-1 mx-3 border-b border-dotted border-gray-400 relative top-[-6px]"></div>
+                <span class="pb-1 font-bold text-[#111]">$ 180.00</span>
+              </li>
+              <li class="flex items-end">
+                <span class="w-40 pb-1">Regrowth Revival</span>
+                <div class="flex-1 mx-3 border-b border-dotted border-gray-400 relative top-[-6px]"></div>
+                <span class="pb-1 font-bold text-[#111]">$ 120.00+</span>
+              </li>
+              <li class="flex items-end">
+                <span class="w-40 pb-1">Lightening Therapy</span>
+                <div class="flex-1 mx-3 border-b border-dotted border-gray-400 relative top-[-6px]"></div>
+                <span class="pb-1 font-bold text-[#111]">$ 150.00+</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mb-12">
+            <h4 class="font-bold text-[12px] tracking-[2px] mb-5 text-[#111] uppercase">Artistic Highlights</h4>
+            <ul class="space-y-3 text-[13px] text-gray-600">
+              <li class="flex items-end">
+                <span class="w-40 pb-1">Creative Balayage</span>
+                <div class="flex-1 mx-3 border-b border-dotted border-gray-400 relative top-[-6px]"></div>
+                <span class="pb-1 font-bold text-[#111]">$ 320.00+</span>
+              </li>
+              <li class="flex items-end">
+                <span class="w-40 pb-1">Signature Face Frame</span>
+                <div class="flex-1 mx-3 border-b border-dotted border-gray-400 relative top-[-6px]"></div>
+                <span class="pb-1 font-bold text-[#111]">$ 190.00+</span>
+              </li>
+              <li class="flex items-end">
+                <span class="w-40 pb-1">Full Head Lustre Foils</span>
+                <div class="flex-1 mx-3 border-b border-dotted border-gray-400 relative top-[-6px]"></div>
+                <span class="pb-1 font-bold text-[#111]">$ 260.00+</span>
+              </li>
+              <li class="flex items-end">
+                <span class="w-40 pb-1">High-Shine Gloss/Toner</span>
+                <div class="flex-1 mx-3 border-b border-dotted border-gray-400 relative top-[-6px]"></div>
+                <span class="pb-1 font-bold text-[#111]">$ 75.00+</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="#"
+            class="inline-block bg-[#1a1a1a] text-white text-[11px] tracking-[4px] font-bold uppercase px-12 py-5 hover:bg-[#c4a484] transition-all duration-500 shadow-lg">Reserve
+            Appointment</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- DYNAMIC REVIEW SECTION -->
+  <section class="py-24 px-[6%] bg-[#fcfcfb] font-sans text-[#111] overflow-hidden">
+
+    <!-- HEADER -->
+    <div class="flex flex-col items-center text-center mb-16">
+      <!-- Slanted Red Line & Subtitle -->
+      <div class="flex items-center gap-2 mb-4">
+        <div class="w-4 h-[2px] bg-red-600 -rotate-45"></div>
+        <span class="text-[10px] font-bold tracking-[2px] uppercase text-gray-500">What Clients Say</span>
+      </div>
+
+      <!-- Main Title -->
+      <h2 class="text-4xl md:text-5xl leading-tight text-[#1a1a1a] mb-4" style="font-family: var(--font-serif);">
+        Honest Feedback<br>From Valued People
+      </h2>
+
+      <!-- Description -->
+      <p class="text-sm text-gray-500 max-w-lg mx-auto leading-relaxed">
+        Real feedback from businesses and individuals who trusted my content to elevate their brands. Their words
+        reflect the impact of my work.
+      </p>
+    </div>
+
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-16">
+
+      <!-- LEFT: LOOPING IMAGES COLUMN -->
+      <div class="relative w-full md:w-1/3 h-[380px] flex flex-col items-center justify-center gap-4">
+
+        <!-- Image 1 (Top - Inactive) -->
+        <div
+          class="w-24 h-24 md:w-32 md:h-28 rounded-2xl overflow-hidden transition-all duration-700 ease-in-out opacity-40 grayscale scale-90">
+          <img id="img-prev"
+            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=256&auto=format&fit=crop"
+            class="w-full h-full object-cover">
+        </div>
+
+        <!-- Image 2 (Center - Active Highlighted) -->
+        <div
+          class="w-28 h-28 md:w-40 md:h-36 rounded-2xl overflow-hidden transition-all duration-700 ease-in-out border-2 border-red-500 shadow-[0_10px_30px_rgba(220,38,38,0.2)] z-10 scale-110">
+          <img id="img-active"
+            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop"
+            class="w-full h-full object-cover">
+        </div>
+
+        <!-- Image 3 (Bottom - Inactive) -->
+        <div
+          class="w-24 h-24 md:w-32 md:h-28 rounded-2xl overflow-hidden transition-all duration-700 ease-in-out opacity-40 grayscale scale-90">
+          <img id="img-next"
+            src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=256&auto=format&fit=crop"
+            class="w-full h-full object-cover">
+        </div>
+
+      </div>
+
+      <!-- RIGHT: REVIEW TEXT CARD -->
+      <div class="w-full md:w-2/3">
+        <div
+          class="bg-white rounded-[32px] p-8 md:p-12 shadow-[0_8px_30px_rgba(0,0,0,0.04)] relative overflow-hidden h-full min-h-[300px] flex flex-col justify-center">
+
+          <!-- Big Quote Watermark Background -->
+          <svg
+            class="absolute right-4 top-4 md:right-8 md:top-8 w-32 h-32 md:w-48 md:h-48 text-gray-50 opacity-80 pointer-events-none"
+            fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+          </svg>
+
+          <!-- Text Content (This div fades in/out via JS) -->
+          <div id="review-content"
+            class="relative z-10 transition-all duration-500 ease-in-out opacity-100 translate-y-0">
+            <h3 id="rev-headline" class="text-2xl md:text-3xl text-[#1a1a1a] mb-4 leading-snug font-medium">
+              Our styling sessions finally speak to the right audience with clarity resulting in high confidence.
+            </h3>
+            <p id="rev-desc" class="text-[13px] md:text-sm text-gray-500 mb-10 max-w-md leading-relaxed">
+              Trust their work, the styling that they delivered completely transformed my personal presence.
+            </p>
+
+            <!-- Author & Stars -->
+            <div class="mt-auto">
+              <h4 id="rev-name" class="font-bold text-[#1a1a1a] text-[15px]">Kathrine Katija</h4>
+              <p id="rev-role" class="text-xs text-gray-400 mb-4">Marketing Manager, ABC Ad Services</p>
+
+              <!-- Dashed line & Stars row -->
+              <div class="flex items-center justify-between border-t border-dashed border-gray-300 pt-4">
+                <div class="w-1/2"></div> <!-- Spacer for layout -->
+                <div class="flex gap-1 text-red-500">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM CTA BUTTON -->
+    <div class="flex flex-col items-center justify-center mt-16 text-center">
+      <p class="text-xs font-bold text-[#1a1a1a] mb-4 font-serif">See how impactful styling<br>makes a difference?</p>
+
+      <!-- Button with Red Glow -->
+      <a href="#"
+        class="bg-[#111] text-white text-[10px] font-bold tracking-[2px] uppercase px-8 py-4 rounded-lg border border-red-600/30 shadow-[0_5px_20px_rgba(220,38,38,0.25)] hover:shadow-[0_5px_25px_rgba(220,38,38,0.4)] transition-all duration-300">
+        SCHEDULE A CALL
+      </a>
+    </div>
+
+  </section>
+
+  <!-- JAVASCRIPT FOR LOOPING REVIEWS -->
+  <script>
+    // Aap yaha apne reviews aur images change kar sakte hain
+    const reviewData = [
+      {
+        img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop",
+        headline: "Our styling sessions finally speak to the right audience with clarity resulting in high confidence.",
+        desc: "Trust their work, the styling that they delivered completely transformed my personal presence.",
+        name: "Kathrine Katija",
+        role: "Marketing Manager, ABC Ad Services"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=256&auto=format&fit=crop",
+        headline: "Best haircut I've ever had. Staff was very professional and the atmosphere was incredible.",
+        desc: "I was struggling to find a good stylist in the city. Finding Lumière was a game changer for me.",
+        name: "Daniel Robertson",
+        role: "Creative Director"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=256&auto=format&fit=crop",
+        headline: "I always come here for my party makeup. They make me look flawless every single time!",
+        desc: "Highly recommend their bridal and party packages. They take care of everything seamlessly.",
+        name: "Rahul Mehta",
+        role: "Business Owner"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=256&auto=format&fit=crop",
+        headline: "Loved the facial service. Clean salon and amazing results. Felt completely rejuvenated.",
+        desc: "The staff is so polite and the products they use are top-notch. My skin feels alive again.",
+        name: "Simran Kaur",
+        role: "VIP Member"
+      }
+    ];
+
+    let currentIndex = 0;
+
+    function rotateReviews() {
+      // Find indices for top, middle(active), and bottom images
+      const prevIndex = (currentIndex - 1 + reviewData.length) % reviewData.length;
+      const activeIndex = currentIndex;
+      const nextIndex = (currentIndex + 1) % reviewData.length;
+
+      // Get DOM Elements
+      const contentDiv = document.getElementById('review-content');
+      const imgPrev = document.getElementById('img-prev').parentElement;
+      const imgActive = document.getElementById('img-active').parentElement;
+      const imgNext = document.getElementById('img-next').parentElement;
+
+      // Step 1: Fade out the text and add blur effect to images
+      contentDiv.style.opacity = '0';
+      contentDiv.style.transform = 'translateY(10px)';
+      imgPrev.style.opacity = '0';
+      imgActive.style.opacity = '0.3';
+      imgActive.style.transform = 'scale(0.95)';
+      imgNext.style.opacity = '0';
+
+      // Wait for fade out, then swap content and fade back in
+      setTimeout(() => {
+        // Update Images
+        document.getElementById('img-prev').src = reviewData[prevIndex].img;
+        document.getElementById('img-active').src = reviewData[activeIndex].img;
+        document.getElementById('img-next').src = reviewData[nextIndex].img;
+
+        // Update Text
+        document.getElementById('rev-headline').innerText = reviewData[activeIndex].headline;
+        document.getElementById('rev-desc').innerText = reviewData[activeIndex].desc;
+        document.getElementById('rev-name').innerText = reviewData[activeIndex].name;
+        document.getElementById('rev-role').innerText = reviewData[activeIndex].role;
+
+        // Step 2: Fade in the text and images smoothly
+        contentDiv.style.opacity = '1';
+        contentDiv.style.transform = 'translateY(0)';
+        imgPrev.style.opacity = '0.4';
+        imgActive.style.opacity = '1';
+        imgActive.style.transform = 'scale(1.1)';
+        imgNext.style.opacity = '0.4';
+      }, 500); // This 500ms matches the CSS transition duration
+
+      // Move to next review for the next cycle
+      currentIndex = (currentIndex + 1) % reviewData.length;
+    }
+
+    // Start the loop (changes every 4 seconds)
+    // Call rotateReviews once immediately to setup initial state properly if needed, 
+    // but current HTML is already set to index 0's data.
+    setInterval(rotateReviews, 4000);
+
+  </script>
+  <!-- END DYNAMIC REVIEW SECTION -->
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    .about-luxury {
+      --accent: #c4a484;
+      /* Premium Gold/Tan */
+      --text-dark: #1a1a1a;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #fdfbf7;
+    }
+
+    .font-serif-premium {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Decorative Stars */
+    .stars-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+      color: var(--accent);
+      opacity: 0.7;
+    }
+
+    /* Inline Image Pill */
+    .inline-pill-image {
+      display: inline-block;
+      width: 80px;
+      height: 40px;
+      border-radius: 50px;
+      background-image: url('https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&q=80&w=400');
+      background-size: cover;
+      background-position: center;
+      vertical-align: middle;
+      margin: 0 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      border: 2px solid #fff;
+    }
+
+    /* Avatars Group */
+    .avatar-stack {
+      display: inline-flex;
+      vertical-align: middle;
+      margin-right: 10px;
+      gap: 8px;
+    }
+
+    .avatar-stack img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .avatar-stack img:hover {
+      transform: translateY(-5px) scale(1.1);
+      z-index: 10;
+    }
+
+    /* Play Button Circular */
+    .btn-play-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background-color: var(--text-dark);
+      color: #fff;
+      border-radius: 50%;
+      margin-left: 12px;
+      vertical-align: middle;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-play-circle:hover {
+      background-color: var(--accent);
+      transform: scale(1.1) rotate(15deg);
+    }
+
+    /* Text Highlight Effect */
+    .text-glow {
+      color: var(--text-dark);
+      line-height: 1.8;
+      letter-spacing: -0.02em;
+    }
+
+    @media (max-width: 768px) {
+      .inline-pill-image {
+        width: 60px;
+        height: 30px;
+      }
+
+      .avatar-stack img {
+        width: 35px;
+        height: 35px;
+      }
+    }
+  </style>
+
+  <section class="about-luxury py-24 px-[6%] text-center relative overflow-hidden">
+
+    <div class="stars-wrap">
+      <span class="text-xs opacity-40">✦</span>
+      <span class="text-xl">✦</span>
+      <span class="text-xs opacity-40">✦</span>
+    </div>
+
+    <div class="max-w-5xl mx-auto">
+      <h2 class="font-serif-premium text-glow text-[clamp(1.8rem,4.5vw,3.2rem)] font-light italic">
+        Welcome to <span class="font-bold not-italic">Luxe Salon</span>,
+        <span class="inline-pill-image"></span>
+        where pure artistry meets
+        <span class="text-[#c4a484] italic">ultimate satisfaction.</span>
+      </h2>
+
+      <div class="h-[1px] w-24 bg-[#c4a484] mx-auto my-12 opacity-30"></div>
+
+      <p class="font-serif-premium text-glow text-[clamp(1.2rem,3vw,2rem)] text-gray-700 font-light">
+        We pride ourselves on offering a diverse range of premium services tailored to meet the needs of every client.
+        <span class="avatar-stack">
+          <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="expert">
+          <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="expert">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="expert">
+        </span>
+        From classic cuts to advanced color treatments, discover the ultimate hair experience where your
+        <span class="border-b-2 border-[#c4a484]/30 pb-1">comfort and style</span> are our top priorities.
+        <a href="#" class="btn-play-circle">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </a>
+      </p>
+    </div>
+
+  </section>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    .premium-footer {
+      /* Wahi brown color jo aapne image mein dikhaya */
+      --bg-brown: #3d2b24;
+      --text-light: #e6ddcf;
+      --accent: #c4a484;
+
+      background-color: var(--bg-brown);
+      color: var(--text-light);
+      font-family: 'Montserrat', sans-serif;
+      padding: 80px 6% 40px;
+      overflow: hidden;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      line-height: 1.8;
+      opacity: 0.8;
+      max-width: 300px;
+    }
+
+    .footer-column h4 {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+      color: var(--accent);
+    }
+
+    .footer-column ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-column ul li a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-size: 13px;
+      opacity: 0.7;
+      transition: all 0.3s ease;
+    }
+
+    .footer-column ul li a:hover {
+      opacity: 1;
+      padding-left: 5px;
+      color: var(--accent);
+    }
+
+    /* Social Icons Bar */
+    .social-bar {
+      border-top: 1px solid rgba(230, 221, 207, 0.1);
+      border-bottom: 1px solid rgba(230, 221, 207, 0.1);
+      padding: 25px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .social-bar span {
+      font-size: 11px;
+      letter-spacing: 3px;
+      font-weight: 600;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-links a {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 12px;
+      transition: 0.3s;
+    }
+
+    .social-links a:hover {
+      background: var(--accent);
+      color: var(--bg-brown);
+      transform: translateY(-3px);
+    }
+
+    /* Giant Big Text */
+    .giant-text {
+      font-size: 18vw;
+      font-weight: 800;
+      text-align: center;
+      line-height: 0.8;
+      letter-spacing: -5px;
+      color: rgba(255, 255, 255, 0.03);
+      /* Subtle watermark style */
+      user-select: none;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: center;
+      font-size: 10px;
+      letter-spacing: 2px;
+      opacity: 0.5;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-brand {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-brand {
+        grid-column: span 1;
+      }
+
+      .giant-text {
+        font-size: 22vw;
+        letter-spacing: -2px;
+      }
+    }
+  </style>
+
+  <footer id="contact" class="premium-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h2>✦ LUXE</h2>
+        <p>Elevating Grooming. Inspiring Style. Unleash Your Confidence at Instyle where we craft exceptional looks that
+          reflect your individuality.</p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Haircuts & Styling</a></li>
+          <li><a href="#">Beard Sculpting</a></li>
+          <li><a href="#">Grooming & Skincare</a></li>
+          <li><a href="#">Luxury Coloring</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="social-bar">
+      <span>FOLLOW US ON</span>
+      <div class="social-links">
+        <a href="#">FB</a>
+        <a href="#">TW</a>
+        <a href="#">IG</a>
+        <a href="#">YT</a>
+        <a href="#">TK</a>
+      </div>
+    </div>
+
+    <div class="giant-text">LUXE SALON</div>
+
+    <div class="footer-bottom">
+      © TEMPLATE BY REALMEHEDI | BUILT FOR LUXURY
+    </div>
+  </footer>
+
+
+  <script>
+    const content = document.getElementById("m-content");
+    content.innerHTML += content.innerHTML;
+
+    window.addEventListener("scroll", () => {
+      const header = document.querySelector("header");
+      header.style.background =
+        window.scrollY > 50 ? "rgba(0, 0, 0, 0.9)" : "rgba(0, 0, 0, 0.2)";
+    });
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('close-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    if (mobileBtn && closeBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.add('flex');
+      });
+      closeBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+      });
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          mobileMenu.classList.remove('flex');
+        });
+      });
+    }
+
+    // --- SCROLL ANIMATION OBSERVER ---
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            // Optional: To animate only once, uncomment the line below
+            // observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+      const animateElements = document.querySelectorAll(`
+        .hero-title, .hero .text-right,
+        .salon-feature-card, .about-text-content, .brand-statement,
+        #services .text-center, .serviceSwiper,
+        #our-work .text-center, #our-work .grid > div,
+        #team .grid, #team .relative.z-20,
+        #pricing .text-center, #pricing .grid > div,
+        .about-luxury .stars-wrap, .about-luxury h2, .about-luxury p,
+        .premium-footer .footer-brand, .premium-footer .footer-column, .premium-footer .social-bar,
+        section.bg-\\[\\#fcfcfb\\] > div
+      `);
+
+      animateElements.forEach(el => {
+        el.classList.add('reveal-on-scroll');
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+
+</html>
