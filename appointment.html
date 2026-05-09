@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LUMIÈRE | Book Your Transformation</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            --bg-dark: #000000;
+            --text-light: #f4f0ea;
+            --accent: #c4a484; /* Lumière Gold */
+            --font-serif: "Playfair Display", serif;
+            --font-sans: "Montserrat", sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            margin: 0;
+            background-image: radial-gradient(circle at top right, #1a1a1a, #000);
+        }
+
+        .font-serif { font-family: var(--font-serif); }
+
+        /* Glassmorphism Card like Lumiere */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(196, 164, 132, 0.2);
+            border-radius: 2px; /* Sharp luxury edges */
+        }
+
+        .input-field {
+            background: transparent;
+            border-bottom: 1px solid rgba(196, 164, 132, 0.3);
+            color: var(--text-light);
+            padding: 12px 0;
+            width: 100%;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .input-field:focus {
+            border-color: var(--accent);
+        }
+
+        .time-pill {
+            padding: 10px 20px;
+            border: 1px solid rgba(196, 164, 132, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .time-pill.active {
+            background: var(--accent);
+            color: black;
+            border-color: var(--accent);
+        }
+
+        .btn-lumiere {
+            background: var(--accent);
+            color: black;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 18px;
+            width: 100%;
+            transition: opacity 0.3s;
+        }
+
+        .btn-lumiere:hover {
+            opacity: 0.8;
+        }
+
+        /* Subtle Animation */
+        .fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center py-20 px-4">
+
+    <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0">
+        <h2 class="font-serif text-[15vw] text-[#c4a484] opacity-[0.03] uppercase tracking-[20px] whitespace-nowrap">
+            Lumière
+        </h2>
+    </div>
+
+    <div class="relative z-10 max-w-4xl w-full fade-in">
+        <div class="text-center mb-12">
+            <p class="text-[10px] tracking-[5px] uppercase text-[#c4a484] mb-4">Reservation</p>
+            <h1 class="font-serif text-5xl md:text-6xl mb-4 italic">Book Your Ritual</h1>
+            <div class="w-12 h-[1px] bg-[#c4a484] mx-auto"></div>
+        </div>
+
+        <div class="glass-card p-8 md:p-16">
+            <form action="#" class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                
+                <div class="relative">
+                    <label class="text-[10px] uppercase tracking-widest text-[#c4a484]">Guest Name</label>
+                    <input type="text" class="input-field" placeholder="E.g. Akash Sharma" required>
+                </div>
+
+                <div class="relative">
+                    <label class="text-[10px] uppercase tracking-widest text-[#c4a484]">Service Ritual</label>
+                    <select class="input-field bg-black">
+                        <option>Precision Haircut</option>
+                        <option>Couture Styling</option>
+                        <option>Colour Alchemy</option>
+                        <option>Hair Spa Ritual</option>
+                    </select>
+                </div>
+
+                <div class="relative">
+                    <label class="text-[10px] uppercase tracking-widest text-[#c4a484]">Preferred Date</label>
+                    <input type="date" class="input-field" required>
+                </div>
+
+                <div class="relative">
+                    <label class="text-[10px] uppercase tracking-widest text-[#c4a484]">Phone Number</label>
+                    <input type="tel" class="input-field" placeholder="+91 00000 00000" required>
+                </div>
+
+                <div class="md:col-span-2">
+                    <label class="text-[10px] uppercase tracking-widest text-[#c4a484] block mb-6">Select Available Time</label>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="time-pill text-center">10:00 AM</div>
+                        <div class="time-pill active text-center">12:30 PM</div>
+                        <div class="time-pill text-center">03:00 PM</div>
+                        <div class="time-pill text-center">05:30 PM</div>
+                        <div class="time-pill text-center">07:00 PM</div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 mt-8">
+                    <button type="submit" class="btn-lumiere shadow-2xl">
+                        Request Appointment
+                    </button>
+                    <p class="text-[10px] text-center mt-6 text-gray-500 uppercase tracking-widest">
+                        A confirmation email will be sent within 15 minutes.
+                    </p>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="mt-12 text-center">
+            <a href="lumiere.html" class="text-[10px] uppercase tracking-[3px] border-b border-[#c4a484] pb-1 text-[#c4a484] hover:opacity-70 transition">
+                ← Back to Studio
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Time pill selection logic
+        const pills = document.querySelectorAll('.time-pill');
+        pills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                pills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
